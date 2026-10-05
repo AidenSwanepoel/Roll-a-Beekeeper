@@ -254,17 +254,30 @@ src/
 
 ---
 
-## 9. Open questions
+## 9. Decisions (resolved)
 
-1. Does a roll show **3 candidates to pick from**, or a single result? Wiki says three, screenshot shows one pedestal.
-2. How do **Auctions** work (currency, duration, fees)?
-3. What are the "few changes" you want versus the original? None are listed yet, so v1 is a straight reskin.
-4. What is the **5% orb** at bottom right, and what does the clover "x50" represent (a luck boost)?
-5. Final names for Gold and Cash equivalents (Royal Jelly and Honey $ are proposals).
+| Question | Answer |
+|---|---|
+| Roll shows 3 candidates or 1? | **3 candidates, player picks one** |
+| Auctions | "Yes". No rules were given, so use the default: list a bee or beekeeper for Royal Jelly, fixed duration, small fee. Revisit at the Trade/Auctions step |
+| Changes vs original | **None.** Exact same game, adapted to a bee premise |
+| Clover "x50" and 5% orb at bottom right of HUD | Unknown. Treat as luck boosts; confirm when building the HUD |
+| Currency names | **Royal Jelly** (premium) and **Honey $** (cash) |
+| "Only 14" on the x2 Money button | Ignore |
+| Pet 1-11 images | Wrong game (Pet Tower Defense). Ignore |
+| Monetization | Same structure, rethemed names and tuned numbers |
+| How we build | **One small system at a time**, hand-built in Studio so the owner understands each piece. Properly organised: no giant scripts |
 
 ## 10. Studio connection status
 
-- **Not connected.** This is a cloud container, so it cannot reach a Studio session on your computer.
-- **Open Cloud is blocked right now.** Requests to `apis.roblox.com`, `create.roblox.com` and `www.roblox.com` return 403 from the network policy. Fix: edit the environment's Network access to **Custom** and add those hosts under Allowed domains (keep the default package-manager list).
-- You would also need an Open Cloud API key with Place and Luau Execution scopes, set as an environment secret, plus your Universe ID and Place ID. Never paste the key in chat.
-- Open Cloud can publish place files and run Luau, but it cannot playtest or edit the Explorer live. Rojo is still the better day-to-day editing path.
+- Not connected from the cloud. Cloud containers cannot reach a Studio on your computer, and Roblox hosts (`apis.roblox.com`, `create.roblox.com`, `www.roblox.com`) are blocked by the cloud network policy.
+- In a **desktop session**, work locally: either edit scripts in the repo and sync with Rojo, or paste scripts into Studio by hand. See `docs/ROADMAP.md` for the step-by-step plan and `CLAUDE.md` for working rules.
+
+## 11. Progress snapshot
+
+Built by hand in Studio so far (code mirrored in `src/`):
+- Step 1: Roll button prompt and rarity roll
+- Step 2: three beekeeper spots show rolled names
+- Step 3: pick one of the three (stored under `Player > Beekeepers`), refactored into Config / Service / Controller
+
+`prototype/` holds an earlier all-in-one prototype (plots, jars, stands, sell, HUD, installer). It is **reference only**, not the build path. Reuse ideas from it as each step comes up.
